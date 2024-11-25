@@ -3,7 +3,7 @@ import subprocess
 import sys
 
 # List of required modules
-required_modules = ['atexit', 'base64', 'gc', 'logging', 'os', 're', 'requests', 'time']
+required_modules = ['atexit', 'base64', 'gc', 'logging', 'os', 're', 'requests', 'sys', 'time']
 
 def check_and_install_modules(modules):
     """Check if required modules are installed and install if missing."""
@@ -29,18 +29,19 @@ import logging
 import os
 import re
 import requests
+from sys import stdout
 import time
 
 # Configure logging to avoid saving logs
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger = logging.getLogger("1")
+logger.setLevel(20)
 
 # Clear existing handlers to prevent duplication
 if logger.hasHandlers():
     logger.handlers.clear()
 
 # Add a StreamHandler for console-only output
-stream_handler = logging.StreamHandler()
+stream_handler = logging.StreamHandler(stdout)
 formatter = logging.Formatter('%(message)s')
 stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
@@ -55,13 +56,21 @@ CLIENT_ID = "baedda12fe054e4abdfc3ad7bdea970a"
 def main():
     """Main function to drive the script."""
     clear_screen()
-    print(f"I am an element found at the core of technology (SiO₂)")
+    stdout.write("".join([chr(x) for x in [73, 32, 97, 109, 32, 97, 110, 32, 101, 108, 101, 109, 101, 110, 116, 
+                                        32, 102, 111, 117, 110, 100, 32, 97, 116, 32, 116, 104, 101, 32, 
+                                        99, 111, 114, 101, 32, 111, 102, 32, 116, 101, 99, 104, 110, 111, 
+                                        108, 111, 103, 121, 32, 40, 83, 105, 79, 178, 41]]) + "\n")
+    stdout.flush()    
     print()
     time.sleep(1)
-    print(f"Like a synapse, I connect two worlds.")
+    stdout.write("".join([chr(x) for x in [76, 105, 107, 101, 32, 97, 32, 115, 121, 110, 97, 112, 115, 101, 
+                                        44, 32, 73, 32, 99, 111, 110, 110, 101, 99, 116, 32, 116, 119, 111, 
+                                        32, 119, 111, 114, 108, 100, 115, 46]]) + "\n")
+    stdout.flush()
     print()
     time.sleep(2)
-    print(f"33.6053, 117.7114")
+    stdout.write("".join([chr(x) for x in [51, 51, 46, 54, 48, 53, 51, 44, 32, 49, 49, 55, 46, 55, 49, 49, 52]]) + "\n")
+    stdout.flush()
     print()
     time.sleep(3)
     clear_screen()
