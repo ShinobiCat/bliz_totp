@@ -89,18 +89,16 @@ def main():
         st_token = input("Enter the ST code: ").strip()
         if not validate_st_token(st_token, region):
             logger.error("Invalid ST code format.")
-            choice = input("This ST code is in an unknown format. Maybe this is intenional? Do you want to continue anyway? (yes/no): ").strip().lower()
+            choice = input("This ST code is in an unknown format. Maybe this is intentional? Do you want to continue anyway? (yes/no): ").strip().lower()
             if choice not in ("yes", "y"):
                 print("Exiting.")
                 sys.exit(1)
             else:
                 logger.warning("Continuing with invalid ST code format.")
-                break
         else:
             logger.info(f"ST code provided: {st_token}")
-            break
-    
-    print("Proceeding with the ST code.")
+        
+        print("Proceeding with the ST code.")
 
         # Generate access token
         access_token = generate_bearer(st_token)
