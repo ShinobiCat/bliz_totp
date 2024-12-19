@@ -88,11 +88,19 @@ def main():
 
         st_token = input("Enter the ST code: ").strip()
         if not validate_st_token(st_token, region):
-            logger.error("Invalid ST code format. Exiting.")
-            print()
-            sys.exit(1)
-        logger.info(f"ST code provided: {st_token}")
-        print()
+            logger.error("Invalid ST code format.")
+            choice = input("This ST code is in an unknown format. Maybe this is intenional? Do you want to continue anyway? (yes/no): ").strip().lower()
+            if choice not in ("yes", "y"):
+                print("Exiting.")
+                sys.exit(1)
+            else:
+                logger.warning("Continuing with invalid ST code format.")
+                break
+        else:
+            logger.info(f"ST code provided: {st_token}")
+            break
+    
+    print("Proceeding with the ST code.")
 
         # Generate access token
         access_token = generate_bearer(st_token)
@@ -137,10 +145,10 @@ def validate_st_token(st_token, region):
 
     Format example: EU-00x0xx0x000000x000000x0xd0xx0x-123456789
     - Starts with the region (e.g., EU- or US-).
-    - Followed by 30 alphanumeric characters.
-    - Ends with a hyphen and 9 numeric characters.
+    - Followed by 30-40 alphanumeric characters.
+    - Ends with a hyphen and 9-15 numeric characters.
     """
-    pattern = rf"^{region.upper()}-[a-fA-F0-9]{{30}}-\d{{9}}$"
+    pattern = rf"^{region.upper()}-[a-fA-F0-9]{{30,40}}-\d{{9,15}}$"
     if re.match(pattern, st_token):
         return True
     return False
